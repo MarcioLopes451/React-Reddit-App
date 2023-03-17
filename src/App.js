@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import Auth0ProviderWithHistory from './auth0Provider';
+import { Routes, Route } from 'react-router-dom';
+import {SearchBar} from './Components/SearchBar/SearchBar';
+import { DropdownMenu } from './Components/Subreddit/Subreddit';
+import {HomePost} from './Containers/Posting/Post/HomePost';
+import { TwoPost } from './Containers/Posting/Post/TwoPost';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Auth0ProviderWithHistory>
+    <SearchBar />
+    <DropdownMenu />
+    <Routes>
+      <Route path='/' element={<HomePost />} />
+      <Route path='/twopost' element={<TwoPost />} />
+    </Routes>
+    
+   </Auth0ProviderWithHistory>
   );
 }
 
