@@ -2,6 +2,7 @@ import React from "react";
 import logo from '../../images/Reddit-Logo.png';
 import '../SearchBar/SearchBar.css';
 import { useAuth0 } from "@auth0/auth0-react";
+import { Search } from "../../Containers/Search/SearchBarSlice";
 
 
 export const SearchBar = () => {
@@ -10,11 +11,7 @@ export const SearchBar = () => {
     return (
         <nav className="nav" href='/home'>
             <img src={logo} className="Logo" alt="logo" />
-            <input 
-            type='text'
-            placeholder="Search"
-            className="searchBar"
-            />
+            <Search />
             { isLoading && (
                 <div>Loading...</div>
             )}
