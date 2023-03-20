@@ -14,6 +14,7 @@ export const Search = () => {
             res.json().then(data => {
                 if (data != null) {
                     setArticles(data.data.children);
+                    console.log(data)
                 }
             })
         })

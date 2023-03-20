@@ -11,15 +11,17 @@ export const Posts = (props) => {
 return (
     <div className="post-container">
     <h1 className="heading">{props.article.title}</h1>
-    <img className="image" alt="post" />
-    <p>body</p>
+    <img className="image" src={props.article.media_embed
+} alt="post" />
+    <p>{props.article.public_description}</p>
     <div className="info">      
-      <h4>username</h4>
-      <h4>4 hours ago</h4>
-      <h4 onClick={openComments}>Comments</h4>
+      <h4>{props.article.author}</h4>
+      <h4>{props.article.created_utc}</h4>
+      <h4 onClick={openComments}>{props.article.num_comments} Comments</h4>
+      <p>{props.article.ups}</p>
       {
         comments && (
-          <p>comment</p>
+          <p></p>
         )
       }
     </div>
