@@ -9,21 +9,21 @@ import { DropdownMenu } from "../Subreddit/Subreddit";
 export const SearchBar = () => {
     const {isLoading, isAuthenticated, error, user, loginWithRedirect, logout } = useAuth0();
     const [articles, setArticles] = useState([]);
-    const [subreddit, setSubreddit] = useState('');
+    const [subreddit, setSubreddit] = useState('webdev');
 
     useEffect(() => {
-        fetch('https://www.reddit.com/'+ subreddit +'.json').then(res => {
-            if(res.status !== 200) {
-                console.log('error');
-                return;
-            }
-            res.json().then(data => {
-                if (data != null) {
-                    setArticles(data.data.children);
-                    console.log(data)
-                }
-            })
-        })
+      fetch("https://www.reddit.com/r/" + subreddit +".json").then(
+        res => {
+          if (res.status !== 200) {
+            console.warn("Warning: Something is wrong with the api.");
+            return;
+          }
+          res.json().then(data => {
+            if (data != null)
+              setArticles(data.data.children);
+          });
+        }
+      )
     }, [subreddit]);
 
     return (
@@ -61,7 +61,7 @@ export const SearchBar = () => {
         <div>
         <DropdownMenu />
         {
-      articles != null ? articles.map((article, index) => <Posts key={index} article={article.data}/>): ''
+      (articles != null) ? articles.map((article, index) => <Posts key={index} article={article.data}/>): ''
       }
         </div>
         </>
