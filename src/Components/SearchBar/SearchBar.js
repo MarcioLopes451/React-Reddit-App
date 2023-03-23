@@ -9,7 +9,7 @@ import { DropdownMenu } from "../Subreddit/Subreddit";
 export const SearchBar = () => {
     const {isLoading, isAuthenticated, error, user, loginWithRedirect, logout } = useAuth0();
     const [articles, setArticles] = useState([]);
-    const [subreddit, setSubreddit] = useState('webdev');
+    const [subreddit, setSubreddit] = useState('home');
 
     useEffect(() => {
       fetch("https://www.reddit.com/r/" + subreddit +".json").then(
@@ -20,6 +20,7 @@ export const SearchBar = () => {
           }
           res.json().then(data => {
             if (data != null)
+            console.log(data)
               setArticles(data.data.children);
           });
         }
