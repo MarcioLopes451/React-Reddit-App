@@ -4,12 +4,19 @@ import '../SearchBar/SearchBar.css';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Posts } from "../Posts/Posts";
 import { DropdownMenu } from "../Subreddit/Subreddit";
+import { fetchSearchResults, fetchSubredditPosts, setSearchTerm } from "./SearchBarSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 
 export const SearchBar = () => {
     const {isLoading, isAuthenticated, error, user, loginWithRedirect, logout } = useAuth0();
     const [articles, setArticles] = useState([]);
     const [subreddit, setSubreddit] = useState('home');
+    const dispatch = useDispatch();
+    const currentSubreddit = useSelector(state => state.searchBar.currentSubreddit);
+    const loading = useSelector(state=>state.searchBar.isLoading);
+    const hasError = useSelector(state=>state.searchBar.hasError);
+    const searchTerm = useSelector(state=>state.searchBar.searchTerm);
 
     useEffect(() => {
       fetch("https://www.reddit.com/r/" + subreddit +".json").then(
@@ -27,10 +34,21 @@ export const SearchBar = () => {
       )
     }, [subreddit]);
 
+    useEffect(()=>{
+        dispatch(fetchSubredditPosts(currentSubreddit))
+    }, [currentSubreddit]);
+
+    const onHandleSubmit=(e)=>{
+        document.querySelectorAll('input').value=''
+        e.preventDefault();
+        dispatch(fetchSearchResults(searchTerm));
+    }
+    
     return (
         <>
         <nav className="nav" href='/home'>
             <img src={logo} className="Logo" alt="logo" />
+            <form onSubmit={onHandleSubmit}>
             <input 
             type='text'
             placeholder="Search"
@@ -38,6 +56,7 @@ export const SearchBar = () => {
             value={subreddit}
             onChange={e => setSubreddit(e.target.value)}
             />
+            </form>
             { isLoading && (
                 <div>Loading...</div>
             )}
@@ -62,7 +81,7 @@ export const SearchBar = () => {
         <div>
         <DropdownMenu />
         {
-      (articles != null) ? articles.map((article, index) => <Posts key={index} article={article.data}/>): ''
+      (articles != null) ? articles.map((article, index) => <Posts key={index} article={article.data}/>): 'no Post'
       }
         </div>
         </>

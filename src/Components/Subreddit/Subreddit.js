@@ -1,73 +1,48 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import React, {useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {setCurrentSubreddit} from '../SearchBar/SearchBarSlice';
+import { fetchSubreddit } from "./SubredditSlice";
 
 export function DropdownMenu(){
-    const [open, setOpen] = useState(false);
-    const [open1, setOpen1] = useState(false);
-    const [open2, setOpen2] = useState(false);
-    const [open3, setOpen3] = useState(false);
 
-    const handleOpen = () => {
-        setOpen(!open)
-    }
-    const handleOpen1 = () => {
-        setOpen1(!open1)
-    }
-    const handleOpen2 = () => {
-        setOpen2(!open2)
-    }
-    const handleOpen3 = () => {
-        setOpen3(!open3)
-    }
+    const dispatch = useDispatch();
+    const subreddits = useSelector(state => state.subreddit.subreddit);
+    const currentSubreddit = useSelector(state => state.searchBar.currentSubreddit);
 
+    useEffect(()=>{
+        dispatch(fetchSubreddit())
+    },[dispatch]);
     return (
         <>
        <div className="dropdown">
-            <h2 className="subreddit-title">Subreddit</h2>
-             <button className='subreddit-btn' onClick={handleOpen}>Popular Communities</button>
-             {open && (
-                <ul className='menu'>
-                <li className="menu-item">
-                   <Link to='/'> mornn </Link>
-                </li>
-                <li className="menu-item">
-                    <Link to='/twopost'>Hisdwd</Link>
-                </li>
-            </ul>
-             )}
-             <button className='subreddit-btn' onClick={handleOpen1}>Popular Communities</button>
-             {open1 && (
-                <ul className='menu'>
-                <li className="menu-item">
-                   <Link to='/'> mornn </Link>
-                </li>
-                <li className="menu-item">
-                    <Link to='/twopost'>Hisdwd</Link>
-                </li>
-            </ul>
-             )}
-             <button className='subreddit-btn' onClick={handleOpen2}>Popular Communities</button>
-             {open2 && (
-                <ul className='menu'>
-                <li className="menu-item">
-                   <Link to='/'> mornn </Link>
-                </li>
-                <li className="menu-item">
-                    <Link to='/twopost'>Hisdwd</Link>
-                </li>
-            </ul>
-             )}
-             <button className='subreddit-btn' onClick={handleOpen3}>Popular Communities</button>
-             {open3 && (
-                <ul className='menu'>
-                <li className="menu-item">
-                   <Link to='/'> mornn </Link>
-                </li>
-                <li className="menu-item">
-                    <Link to='/twopost'>Hisdwd</Link>
-                </li>
-            </ul>
-             )}
+            <h2 className="subreddit-title">Popular Subreddits</h2>
+            <ul className="subreddits-list">
+        {subreddits.map((subreddit) => (
+          <li
+            key={subreddit.id}
+            className={`${
+            currentSubreddit === subreddit.url && `selected-subreddit`
+            }`}
+          >
+            <button
+              className={subreddit.display_name === currentSubreddit ? 'current-subreddit' : 'subreddit-items'}
+              type="button"
+              onClick={() => dispatch(setCurrentSubreddit(subreddit.display_name))}
+            >
+                <img
+                src={
+                  subreddit.icon_img ||
+                  `https://www.redditinc.com/assets/images/site/reddit-logo.png`
+                }
+                alt={`${subreddit.display_name}`}
+                className="subreddit-icon"
+                style={{ border: `3px solid ${subreddit.primary_color}` }}
+              />
+              {subreddit.display_name}
+            </button>
+          </li>
+        ))}
+      </ul>
         </div>
         </>
     )
