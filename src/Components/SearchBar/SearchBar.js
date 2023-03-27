@@ -2,61 +2,45 @@ import React, {useState, useEffect} from "react";
 import logo from '../../images/Reddit-Logo.png';
 import '../SearchBar/SearchBar.css';
 import { useAuth0 } from "@auth0/auth0-react";
-import { Posts } from "../Posts/Posts";
 import { DropdownMenu } from "../Subreddit/Subreddit";
-import { fetchSearchResults, fetchSubredditPosts, setSearchTerm } from "./SearchBarSlice";
+import { fetchSearchResults, setSearchTerm } from "./SearchBarSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { Posts } from "../Posts/Posts";
 
 
 export const SearchBar = () => {
     const {isLoading, isAuthenticated, error, user, loginWithRedirect, logout } = useAuth0();
-    const [articles, setArticles] = useState([]);
-    const [subreddit, setSubreddit] = useState('home');
     const dispatch = useDispatch();
-    const currentSubreddit = useSelector(state => state.searchBar.currentSubreddit);
-    const loading = useSelector(state=>state.searchBar.isLoading);
-    const hasError = useSelector(state=>state.searchBar.hasError);
-    const searchTerm = useSelector(state=>state.searchBar.searchTerm);
+    const [articles, setArticles] = useState([]);
+    const [subreddit, setSubreddit] = useState('webdev');
 
     useEffect(() => {
-      fetch("https://www.reddit.com/r/" + subreddit +".json").then(
-        res => {
-          if (res.status !== 200) {
-            console.warn("Warning: Something is wrong with the api.");
-            return;
+        fetch("https://www.reddit.com/r/" + subreddit +".json").then(
+          res => {
+            if (res.status !== 200) {
+              console.warn("Warning: Something is wrong with the api.");
+              return;
+            }
+            res.json().then(data => {
+              if (data != null)
+              console.log(data)
+                setArticles(data.data.children);
+            });
           }
-          res.json().then(data => {
-            if (data != null)
-            console.log(data)
-              setArticles(data.data.children);
-          });
-        }
-      )
-    }, [subreddit]);
+        )
+      }, [subreddit]);
 
-    useEffect(()=>{
-        dispatch(fetchSubredditPosts(currentSubreddit))
-    }, [currentSubreddit]);
-
-    const onHandleSubmit=(e)=>{
-        document.querySelectorAll('input').value=''
-        e.preventDefault();
-        dispatch(fetchSearchResults(searchTerm));
-    }
-    
     return (
         <>
         <nav className="nav" href='/home'>
             <img src={logo} className="Logo" alt="logo" />
-            <form onSubmit={onHandleSubmit}>
             <input 
             type='text'
             placeholder="Search"
             className="searchBar"
             value={subreddit}
-            onChange={e => setSubreddit(e.target.value)}
+            onChange={(e)=> setSubreddit(e.target.value)}
             />
-            </form>
             { isLoading && (
                 <div>Loading...</div>
             )}
@@ -81,8 +65,10 @@ export const SearchBar = () => {
         <div>
         <DropdownMenu />
         {
-      (articles != null) ? articles.map((article, index) => <Posts key={index} article={article.data}/>): 'no Post'
-      }
+                (articles != null) ? articles.map((article, index) => 
+                <Posts key={index} article={article.data}/>) 
+                : <p>No Posts</p>
+                }
         </div>
         </>
         

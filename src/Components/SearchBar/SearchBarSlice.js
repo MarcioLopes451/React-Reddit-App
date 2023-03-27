@@ -23,7 +23,7 @@ export const fetchSearchResults = createAsyncThunk('search/getResults',
 const searchBarSlice = createSlice({
     name: 'reddit',
     initialState:{
-        posts: null,
+        article: null,
         searchTerm:'',
         currentSubreddit:'worldnews',
         isLoading: false,
@@ -35,8 +35,8 @@ const searchBarSlice = createSlice({
         setCurrentSubreddit: (state, action)=>{
             state.currentSubreddit = action.payload;
         },
-        setPosts:(state, action)=>{
-            state.posts = action.payload
+        setArticle:(state, action)=>{
+            state.article = action.payload
         },
         setSearchTerm: (state, action)=>{
             state.searchTerm = action.payload
@@ -66,7 +66,7 @@ const searchBarSlice = createSlice({
         [fetchSearchResults.fulfilled]:(state, action)=>{
             state.isLoading = false;
             state.hasError = false;
-            state.posts = action.payload;
+            state.article = action.payload;
             state.currentSubreddit = '';
             state.searchTerm = '';
         },
@@ -79,7 +79,7 @@ const searchBarSlice = createSlice({
 
 
 export const {
-    setPosts,
+    setArticle,
     setCurrentSubreddit,
     setSearchTerm,
     clearSearchTerm,

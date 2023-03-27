@@ -13,7 +13,7 @@ export const Posts = (props) => {
         const jsonResponse = await response.json();
         const comments = jsonResponse[1].data.children.map(comment=> comment.data)
         setComments(comments);
-        console.log(comments)
+        
       };
 
   const openComments = () => {
