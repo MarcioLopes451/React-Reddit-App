@@ -25,7 +25,7 @@ const searchBarSlice = createSlice({
     initialState:{
         article: null,
         searchTerm:'',
-        currentSubreddit:'worldnews',
+        currentSubreddit:'Home',
         isLoading: false,
         hasError: false,
         isLoadingComments: false,
