@@ -15,6 +15,7 @@ export const SearchBar = () => {
     const currentSubreddit = useSelector(state => state.searchBar.currentSubreddit);
     const searchTerm = useSelector(state=>state.searchBar.searchTerm);
     const articles = useSelector(state => state.searchBar.article);
+    const hasError = useSelector(state => state.searchBar.hasError);
 
 
     useEffect(()=>{
@@ -69,12 +70,14 @@ export const SearchBar = () => {
         </nav>
         <div>
         <DropdownMenu />
-        { loading ? <h1>Loading...</h1> :  <> {
+        { loading ? <h1>Loading...</h1> 
+        : hasError ? <h1>Try Again</h1> 
+        : <> {
             (articles != null) ? articles.map((article,index) => 
             <Posts key={index} article={article}/>) 
             : <p>No Posts</p>
         }
-        </>  }
+        </> }
         </div>
         </>
         

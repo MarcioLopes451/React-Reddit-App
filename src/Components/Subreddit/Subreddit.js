@@ -10,40 +10,39 @@ export function DropdownMenu(){
     const currentSubreddit = useSelector(state => state.searchBar.currentSubreddit);
 
     useEffect(()=>{
-        dispatch(fetchSubreddit())
-    },[dispatch]);
+      dispatch(fetchSubreddit())
+  },[dispatch]);
+
     return (
-        <>
-       <div className="dropdown">
-            <h2 className="subreddit-title">Popular Subreddits</h2>
-            <ul className="subreddits-list">
+      <div className="dropdown">
+      <h2 className="subreddits-source-title">Subreddits</h2>
+        <ul className="subreddits-list">
         {subreddits.map((subreddit) => (
-          <li
-            key={subreddit.id}
-            className={`${
-            currentSubreddit === subreddit.url && `selected-subreddit`
-            }`}
-          >
-            <button
-              className={subreddit.display_name === currentSubreddit ? 'current-subreddit' : 'subreddit-items'}
-              type="button"
-              onClick={() => dispatch(setCurrentSubreddit(subreddit.display_name))}
+            <li
+              key={subreddit.id}
+              className={`${
+              currentSubreddit === subreddit.url && `selected-subreddit`
+              }`}
             >
-                <img
-                src={
-                  subreddit.icon_img ||
-                  `https://www.redditinc.com/assets/images/site/reddit-logo.png`
-                }
-                alt={`${subreddit.display_name}`}
-                className="subreddit-icon"
-                style={{ border: `3px solid ${subreddit.primary_color}` }}
-              />
-              {subreddit.display_name}
-            </button>
-          </li>
-        ))}
-      </ul>
+              <button
+                className={subreddit.display_name === currentSubreddit ? 'current-subreddit' : 'subreddit-items'}
+                type="button"
+                onClick={() => dispatch(setCurrentSubreddit(subreddit.display_name))}
+              >
+                  <img
+                  src={
+                    subreddit.icon_img ||
+                    `https://www.redditinc.com/assets/images/site/reddit-logo.png`
+                  }
+                  alt={`${subreddit.display_name}`}
+                  className="subreddit-icon"
+                  style={{ border: `3px solid ${subreddit.primary_color}` }}
+                />
+                {subreddit.display_name}
+              </button>
+            </li>
+          ))}
+        </ul>
         </div>
-        </>
-    )
+      )
 }
