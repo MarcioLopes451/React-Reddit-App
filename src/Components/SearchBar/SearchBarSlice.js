@@ -6,7 +6,7 @@ export const fetchSubredditPosts = createAsyncThunk('reddit/getSubredditPosts',
     async(subreddit) => {
         const response = await fetch(`https://www.reddit.com/r/${subreddit}.json`);
         const json = await response.json();
-        return json.data.children.map(post => post.data)
+        return json.data.children.map(article => article.data)
     });
 
 
@@ -15,7 +15,7 @@ export const fetchSearchResults = createAsyncThunk('search/getResults',
     async (searchTerm) => {
         const response = await fetch(`https://www.reddit.com/search.json?q=${searchTerm}`);
         const json = await response.json();
-        return json.data.children.map(post => post.data);
+        return json.data.children.map(article => article.data);
     }
 );
 
@@ -25,7 +25,7 @@ const searchBarSlice = createSlice({
     initialState:{
         article: null,
         searchTerm:'',
-        currentSubreddit:'Home',
+        currentSubreddit:'worldnews',
         isLoading: false,
         hasError: false,
         isLoadingComments: false,
@@ -53,7 +53,7 @@ const searchBarSlice = createSlice({
         [fetchSubredditPosts.fulfilled]:(state, action)=>{
             state.isLoading = false;
             state.hasError = false;
-            state.posts = action.payload
+            state.article = action.payload
         },
         [fetchSubredditPosts.rejected]:(state)=>{
             state.isLoading = false;

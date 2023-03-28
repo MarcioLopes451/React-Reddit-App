@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect } from "react";
 import logo from '../../images/Reddit-Logo.png';
 import '../SearchBar/SearchBar.css';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -11,37 +11,27 @@ import { Posts } from "../Posts/Posts";
 export const SearchBar = () => {
     const {isLoading, isAuthenticated, error, user, loginWithRedirect, logout } = useAuth0();
     const dispatch = useDispatch();
-    const [articles, setArticles] = useState([]);
     const loading = useSelector(state=>state.searchBar.isLoading);
-    const hasError = useSelector(state=>state.searchBar.hasError);
     const currentSubreddit = useSelector(state => state.searchBar.currentSubreddit);
     const searchTerm = useSelector(state=>state.searchBar.searchTerm);
+    const articles = useSelector(state => state.searchBar.article);
 
-    useEffect(() => {
-        fetch("https://www.reddit.com/r/" + searchTerm +".json").then(
-          res => {
-            if (res.status !== 200) {
-              console.warn("Warning: Something is wrong with the api.");
-              return;
-            }
-            res.json().then(data => {
-              if (data != null)
-              console.log(data)
-                setArticles(data.data.children);
-            });
-          }
-        )
-      }, [searchTerm]);
 
-      useEffect(()=>{
-        dispatch(fetchSubredditPosts(currentSubreddit))
+    useEffect(()=>{
+        const results = () => {
+            dispatch(fetchSubredditPosts(currentSubreddit))
+        }
+        return results
     }, [currentSubreddit])
+    console.log(articles)
+
 
     const onHandleSubmit=(e)=>{
+        document.querySelectorAll('input').value=''
         e.preventDefault();
         dispatch(fetchSearchResults(searchTerm));
-        setSearchTerm(null);
     }
+    
 
     return (
         <>
@@ -80,8 +70,8 @@ export const SearchBar = () => {
         <div>
         <DropdownMenu />
         { loading ? <h1>Loading...</h1> :  <> {
-            (articles != null) ? articles.map((article, index) => 
-            <Posts key={index} article={article.data}/>) 
+            (articles != null) ? articles.map((article,index) => 
+            <Posts key={index} article={article}/>) 
             : <p>No Posts</p>
         }
         </>  }
