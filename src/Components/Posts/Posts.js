@@ -36,18 +36,16 @@ return (
     </video> : ''} 
     <p>{props.article.public_description}</p>
     <div className="info">      
-      <h4>{props.article.author}</h4>
-      <div>{formatTimestamp(props.article.created_utc)} ago</div>
-      <div className="comment-list">
-       {comments ? <div><button onClick={()=>{openComments()}} className="clear-button"></button><Comments comments={comments}/></div> : <button 
-    className="comments-button"
-    onClick={()=>onToggleCommments(props.article.id)}
-    >Comments<div className="line-divide"> | </div> {props.article.num_comments}
-    </button>}
-       
+      <p className="redditUsername1">{props.article.author}</p>
+      <p className="timeStamp">{formatTimestamp(props.article.created_utc)} ago</p>
+      <button className="comments-button" onClick={()=>onToggleCommments(props.article.id)}>
+        {props.article.num_comments} Comments
+      </button>
     </div>
-    </div>
+    {comments && (
+      <div><button onClick={()=>{openComments()}} className="clear-button">Close Comments</button><Comments comments={comments}/></div>
+    )}
   </div>
+
 );
 };
-

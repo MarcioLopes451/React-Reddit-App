@@ -9,8 +9,10 @@ import Home from './Components/Home/Home';
 function App() {
   return (
    <Auth0ProviderWithHistory>
+    <div>
     <SearchBar />
     <Home />
+    </div>
    </Auth0ProviderWithHistory>
   );
 }

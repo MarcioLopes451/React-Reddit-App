@@ -1,6 +1,5 @@
 import React from "react";
 import logo from '../../images/Reddit-Logo.png';
-import '../SearchBar/SearchBar.css';
 import { useAuth0 } from "@auth0/auth0-react";
 import { DropdownMenu } from "../Subreddit/Subreddit";
 import { fetchSearchResults, setSearchTerm} from "./SearchBarSlice";
