@@ -1,3 +1,26 @@
+/* dark theme */
+
+#dark .dropdown {
+  background-color: #1f1f1f;
+}
+#dark .subreddit-items, #dark .subreddits-source-title{
+ color: #ffffff;
+}
+#dark .subreddit-items:hover {
+  color: #000000;
+ }
+ #dark .current-subreddit {
+  color: #ffffff;
+  background: #fc5c00;
+ }
+ #dark .post-container {
+  color: #ffffff;
+  background: #1f1f1f;
+ }
+ #dark .nav {
+  box-shadow: none;
+  background: #1f1f1f;
+ }
 /* Search bar */
 
 .nav {
@@ -6,6 +29,12 @@
   align-items: center;
   padding: 0 2rem;
   box-shadow: 0px 6px 11px 0px rgba(184, 184, 184, 0.8); 
+}
+body {
+  background-color: #000000;
+}
+.app {
+  background-color: #cfcfd4;
 }
 
 .Logo {

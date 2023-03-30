@@ -21,7 +21,7 @@ export default function Home() {
         return <h1>Try Again</h1>
     } else {
         return (
-            <div>
+            <div className='home'>
                 {
                     articles != null ? articles.map((article,index) => 
                     <Posts key={index} article={article}/>) 
