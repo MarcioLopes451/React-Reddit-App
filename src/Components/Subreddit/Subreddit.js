@@ -15,7 +15,7 @@ export function DropdownMenu(){
 
     return (
       <div className="dropdown">
-      <h2 className="subreddits-source-title">Subreddits</h2>
+      <h2 className="subreddits-source-title">Popular Subreddits</h2>
         <ul className="subreddits-list">
         {subreddits.map((subreddit) => (
             <li
