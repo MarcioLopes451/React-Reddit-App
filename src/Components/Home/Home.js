@@ -16,12 +16,12 @@ export default function Home() {
     console.log(articles)
 
     if(loading){
-        return <h1>Loading...</h1>
+        return <h1 className='Check'>Loading...</h1>
     }if(hasError){
-        return <h1>Try Again</h1>
+        return <h1 className='Check'>Try Again</h1>
     } else {
         return (
-            <div className='home'>
+            <div className='App'>
                 {
                     articles != null ? articles.map((article,index) => 
                     <Posts key={index} article={article}/>) 
