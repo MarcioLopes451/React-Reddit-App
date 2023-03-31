@@ -43,8 +43,8 @@ export const SearchBar = () => {
             </div>
         </nav>
         <div className="App">
-        <DropdownMenu />
         <Home />
+        <DropdownMenu />
         </div>
         </div>
         </ThemeContext.Provider>
