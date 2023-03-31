@@ -42,13 +42,7 @@
   filter: invert(100%);
   -webkit-filter: invert(100%);
  }
- body {
-  background: #000000;
- }
 /* Search bar */
-.App {
-  background-color: #000000;
-}
 .nav {
   display: flex;
   justify-content: space-between;
@@ -195,6 +189,7 @@ body {
  text-align: center;
  display: flex;
  align-items: center;
+ font-size: x-large;
 }
 .image {
  height: 210px;
@@ -206,11 +201,17 @@ body {
 }
 
 .postImg {
- width: 500px;
+ width: 80%;
  display: block;
  margin-left: auto;
  margin-right: auto;
  margin-top: 2%;
+}
+.videoImg {
+  width: 80%;
+  display: block;
+ margin-left: auto;
+ margin-right: auto;
 }
 
 .comments-button {
@@ -219,6 +220,45 @@ body {
   float: right;
   cursor: pointer;
   border-radius: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+  .post-container {
+    float: none;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dropdown {
+    float: none;
+    display: none;
+  }
+  .heading{
+    font-size:medium;
+  }
+  .redditUsername1, .timeStamp {
+    font-size: x-small;
+  }
+  .comments-button {
+    width: 23%;
+    font-size: x-small;
+  }
+  .Logo {
+    width: 80px;
+  }
+  .searchBar {
+    width: 100px;
+  }
+  .labs p {
+    font-size: small;
+  }
+  .commenting {
+    font-size: small;
+  }
+  .redditUsername {
+    font-size: small;
+  }
 }
 
 /* comment section */

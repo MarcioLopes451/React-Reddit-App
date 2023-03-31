@@ -31,7 +31,7 @@ return (
     <h1 className="heading">{props.article.title}</h1>
     {props.article.thumbnail && props.article.post_hint === 'image' ? <img alt="" src={props.article.url} className='postImg'/> : ''}
     {props.article.post_hint === 'hosted:video' ?
-    <video controls className='postImg'>
+    <video controls className='videoImg'>
       <source src={props.article.media.reddit_video.fallback_url} type='video/mp4'/>
     </video> : ''} 
     <p>{props.article.public_description}</p>
