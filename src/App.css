@@ -5,9 +5,11 @@
 }
 #dark .subreddit-items, #dark .subreddits-source-title{
  color: #ffffff;
+ background: none;
 }
 #dark .subreddit-items:hover {
   color: #000000;
+  background: #ffffff;
  }
  #dark .current-subreddit {
   color: #ffffff;
