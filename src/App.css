@@ -57,6 +57,9 @@
 body {
   background: rgb(205, 204, 204);
 }
+.loool {
+  display: flex;
+}
 .Logo {
    width: 150px;
 }
@@ -230,12 +233,13 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
-
+.loool {
+  display: block;
+}
   .dropdown {
     float: left;
     margin-top: 10%;
     width: 90%;
-    margin-left: 2%;
   }
   .heading{
     font-size:medium;

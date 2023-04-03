@@ -42,9 +42,9 @@ export const SearchBar = () => {
                 <ReactSwitch onChange={toggleTheme} checked={theme === 'dark'}/>
             </div>
         </nav>
-        <div className="App">
-        <DropdownMenu />
+        <div className="loool">
         <Home />
+        <DropdownMenu />
         </div>
         </div>
         </ThemeContext.Provider>
