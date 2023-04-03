@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/React-Reddit-App/static/css/main.1cbf40f6.css",
+    "main.css": "/React-Reddit-App/static/css/main.eb5967d6.css",
     "main.js": "/React-Reddit-App/static/js/main.779e77e0.js",
     "static/media/Reddit-Logo.png": "/React-Reddit-App/static/media/Reddit-Logo.bd537571352ef8487353.png",
     "index.html": "/React-Reddit-App/index.html",
-    "main.1cbf40f6.css.map": "/React-Reddit-App/static/css/main.1cbf40f6.css.map",
+    "main.eb5967d6.css.map": "/React-Reddit-App/static/css/main.eb5967d6.css.map",
     "main.779e77e0.js.map": "/React-Reddit-App/static/js/main.779e77e0.js.map"
   },
   "entrypoints": [
-    "static/css/main.1cbf40f6.css",
+    "static/css/main.eb5967d6.css",
     "static/js/main.779e77e0.js"
   ]
 }
