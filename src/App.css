@@ -78,8 +78,8 @@ body {
  float: right;
  box-shadow: 0px 6px 11px 0px rgba(210, 210, 210, 0.8); 
  width: 17rem;
- margin-top: 1%;
  background: #ffffff;
+ margin-top: 1%;
 }
 
 .subreddits-section{
@@ -171,7 +171,6 @@ body {
   float: left;
   padding: 0 2rem;
 }
-
 .post-container {
  box-shadow: 0px 6px 11px 0px rgba(184, 184, 184, 0.8); 
  display: flex;
@@ -229,6 +228,7 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
+
   .dropdown {
     float: left;
     margin-top: 10%;
@@ -271,7 +271,6 @@ body {
 
 .commentBody {
   background: #f9f7f7;
-  
 }
 .commentBody:hover {
   box-shadow: 0px 6px 11px 0px rgba(189, 189, 189, 0.8);
