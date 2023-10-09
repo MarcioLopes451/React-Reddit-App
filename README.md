@@ -15,8 +15,11 @@ You can view the website [here](https://marciolopes451.github.io/React-Reddit-Ap
 
 ## Features
 Search Bar: user can use the search bar to search for any subreddit posts of their choosing
+
 Subreddit Links: users can use the subredit links that can display the subreddit contents such as posts & images
+
 Posts: users can see the posts thats been displayed on a specific subreddit. They can view the images, the author of the post & the comment section
+
 Light/Dark Theme: users can change the colour theme of the website from light colours to dark colours
 
 ## To run this website locally:
