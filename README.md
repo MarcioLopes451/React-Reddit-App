@@ -1,10 +1,28 @@
 # RedditApp
 
-This is my first react project and I'm glad i've completed it. I've learnt soo much from this project went through soo many struggles but I got to the end of the tunnel.
+This RedditApp is a website that displays content of a reddit page including;
+- Search bar
+- Posts
+- Subreddits
 
-I designed a figma template of the design of the app in my view and have a documented planning sheet on how I will go about completing this project. As of this writing, there is still small improvements that I will address but I just wanted to deploy this project soo many others can see. I'm happy for any critis and any improvements. 
+You can view the website [here](https://marciolopes451.github.io/React-Reddit-App/)
 
-Figma Design - https://www.figma.com/file/OAhuPQXD3RktH4pm2xcE77/Reddit-BTEC-App?node-id=3-2&t=CiBDlcRTF7boSTbY-0
-You can find my Word documentation in my repo.
+## Tools used:
+- HTML
+- CSS
+- React
+- Redux
 
-#Happy Coding !
+## Features
+Search Bar: user can use the search bar to search for any subreddit posts of their choosing
+Subreddit Links: users can use the subredit links that can display the subreddit contents such as posts & images
+Posts: users can see the posts thats been displayed on a specific subreddit. They can view the images, the author of the post & the comment section
+Light/Dark Theme: users can change the colour theme of the website from light colours to dark colours
+
+## To run this website locally:
+
+Clone the repository
+Install dependencies by running npm install in the project directory
+Start the server by running npm run server in the project directory
+Start the client by running npm run client in a new terminal window
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
